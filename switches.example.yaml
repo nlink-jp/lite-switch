@@ -1,0 +1,17 @@
+# lite-switch example switches file
+# Copy this file to switches.yaml and define your classification options.
+# This file contains application logic and can be version-controlled freely.
+#
+# Each switch requires:
+#   tag:         value written to stdout when this switch is selected
+#   description: natural language description shown to the LLM for matching
+
+switches:
+  - tag: weather
+    description: Questions or topics about weather forecasts or meteorological conditions
+
+  - tag: time
+    description: Questions about the current time or elapsed time
+
+  - tag: default
+    description: Anything that does not match the above switches

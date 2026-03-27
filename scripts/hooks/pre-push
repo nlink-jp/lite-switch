@@ -1,0 +1,5 @@
+#!/bin/sh
+# pre-push: full quality gate
+set -e
+echo "--- pre-push: full check ---"
+make check

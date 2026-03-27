@@ -1,0 +1,26 @@
+# lite-switch example configuration
+# Copy this file to ~/.config/lite-switch/config.toml and fill in your values.
+# All settings can also be overridden via environment variables (prefix: LITE_SWITCH_).
+
+[api]
+# Base URL of the OpenAI-compatible API endpoint.
+# Environment variable: LITE_SWITCH_BASE_URL
+# For LM Studio: http://localhost:1234
+# For Ollama:    http://localhost:11434
+#base_url = "https://api.openai.com"
+
+# API key sent in the Authorization header.
+# For local APIs that do not require authentication, leave commented out.
+# Environment variable: LITE_SWITCH_API_KEY
+#api_key = "sk-..."
+
+# HTTP request timeout in seconds.
+#timeout_seconds = 30
+
+# Maximum number of retry attempts on transient errors.
+#max_retries = 3
+
+[model]
+# Model name used for classification.
+# Environment variable: LITE_SWITCH_MODEL
+name = "gpt-4o-mini"
