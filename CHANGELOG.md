@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
+## [0.1.1] - 2026-03-27
+
+### Security
+
+- Added config file permission check: warns to stderr and suggests `chmod 600`
+  when the config file is readable by group or others (`perm & 0077 != 0`).
+
+
 ## [0.1.0] - 2026-03-27
 
 ### Added
@@ -18,4 +26,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - Exponential backoff retry on transient errors and rate limiting.
 
 
+[0.1.1]: https://github.com/nlink-jp/lite-switch/releases/tag/v0.1.1
 [0.1.0]: https://github.com/nlink-jp/lite-switch/releases/tag/v0.1.0
