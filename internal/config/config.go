@@ -7,6 +7,7 @@ package config
 
 import (
 	"fmt"
+	"io"
 	"os"
 	"path/filepath"
 	"strings"
@@ -15,6 +16,9 @@ import (
 	"github.com/BurntSushi/toml"
 	"gopkg.in/yaml.v3"
 )
+
+// Stderr is the writer used for warning messages; can be overridden in tests.
+var Stderr io.Writer = os.Stderr
 
 // Switch represents a single classification option.
 type Switch struct {
@@ -103,11 +107,28 @@ func Load(configPath, switchesPath string) (*Config, error) {
 }
 
 func loadSystem(path string) (systemFile, error) {
+	info, err := os.Stat(path)
+	if err != nil {
+		return systemFile{}, fmt.Errorf("reading config %q: %w", path, err)
+	}
+	checkPermissions(path, info)
+
 	var sys systemFile
 	if _, err := toml.DecodeFile(path, &sys); err != nil {
 		return systemFile{}, fmt.Errorf("reading config %q: %w", path, err)
 	}
 	return sys, nil
+}
+
+func checkPermissions(path string, info os.FileInfo) {
+	perm := info.Mode().Perm()
+	if perm&0077 != 0 {
+		_, _ = fmt.Fprintf(Stderr,
+			"Warning: config file %s has permissions %04o; expected 0600.\n"+
+				"  The file may contain an API key. Run: chmod 600 %s\n",
+			path, perm, path,
+		)
+	}
 }
 
 func loadSwitches(path string) (switchesFile, error) {
