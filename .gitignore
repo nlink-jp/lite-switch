@@ -3,3 +3,15 @@ dist/
 *.toml
 !config.example.toml
 test-*.yaml
+
+# macOS
+.DS_Store
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# External source
+external/
