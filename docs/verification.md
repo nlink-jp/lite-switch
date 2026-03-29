@@ -5,7 +5,7 @@
 | Item | Value |
 |------|-------|
 | Date | 2026-03-27 |
-| Binary | `bin/lite-switch` built from v0.1.0 |
+| Binary | `dist/lite-switch` built from v0.1.0 |
 | LLM endpoint | LM Studio (`http://localhost:1234`) |
 | Model | `openai/gpt-oss-20b` |
 | Config | `test-config.toml` (timeout 30s, max_retries 3) |

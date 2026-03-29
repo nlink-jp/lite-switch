@@ -11,7 +11,7 @@
 git clone https://github.com/nlink-jp/lite-switch.git
 cd lite-switch
 make build
-# Add bin/ to your PATH or copy bin/lite-switch somewhere on your PATH
+# Add dist/ to your PATH or copy dist/lite-switch somewhere on your PATH
 ```
 
 ## System config

@@ -12,7 +12,7 @@ Part of [lite-series](https://github.com/nlink-jp/lite-series).
 ## Build & test
 
 ```sh
-make build    # bin/lite-switch
+make build    # dist/lite-switch
 make check    # vet → lint → test → build → govulncheck
 go test ./... # tests only
 ```

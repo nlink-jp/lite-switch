@@ -11,7 +11,7 @@
 git clone https://github.com/nlink-jp/lite-switch.git
 cd lite-switch
 make build
-# bin/ を PATH に追加するか、bin/lite-switch を PATH 上のディレクトリにコピーしてください
+# dist/ を PATH に追加するか、dist/lite-switch を PATH 上のディレクトリにコピーしてください
 ```
 
 ## システム設定

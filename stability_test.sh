@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SW="/Users/magi/works/lite-switch/bin/lite-switch"
+SW="/Users/magi/works/lite-switch/dist/lite-switch"
 CFG="/Users/magi/works/lite-switch/test-config.toml"
 SWF="/Users/magi/works/lite-switch/test-switches.yaml"
 

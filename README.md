@@ -20,7 +20,7 @@ Part of [lite-series](https://github.com/nlink-jp/lite-series).
 git clone https://github.com/nlink-jp/lite-switch.git
 cd lite-switch
 make build
-# binary: bin/lite-switch
+# binary: dist/lite-switch
 ```
 
 ## Configuration
@@ -87,7 +87,7 @@ Flags:
 ## Building
 
 ```sh
-make build        # current platform → bin/lite-switch
+make build        # current platform → dist/lite-switch
 make build-all    # all 5 platforms  → dist/
 make check        # vet + lint + test + build + govulncheck
 ```
