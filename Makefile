@@ -5,6 +5,14 @@ LDFLAGS := -ldflags "-X main.version=$(VERSION)"
 
 DIST_DIR := dist
 
+# macOS Developer ID signing / notarization (see nlink-jp/.github
+# CONVENTIONS.md §Code Signing). Defaults match any Developer ID
+# Application cert in the keychain and the org-standard notary
+# profile. Builds without these fall back to ad-hoc / un-notarized
+# with a one-line warning — see scripts/codesign-darwin.sh.
+CODESIGN_IDENTITY ?= Developer ID Application
+NOTARY_PROFILE    ?= nlink-jp-notary
+
 PLATFORMS := \
 	linux/amd64 \
 	linux/arm64 \
@@ -12,7 +20,7 @@ PLATFORMS := \
 	darwin/arm64 \
 	windows/amd64
 
-.PHONY: all build test vet lint check setup build-all clean
+.PHONY: all build test vet lint check setup build-all package clean
 
 ## all: default target — build the binary
 all: build
@@ -21,6 +29,7 @@ all: build
 build:
 	@mkdir -p $(DIST_DIR)
 	go build $(LDFLAGS) -o $(DIST_DIR)/$(BINARY) .
+	@scripts/codesign-darwin.sh $(DIST_DIR)/$(BINARY) "$(CODESIGN_IDENTITY)"
 
 ## test: run all unit tests
 test:
@@ -58,7 +67,22 @@ build-all:
 		GOOS=$(GOOS) GOARCH=$(GOARCH) go build $(LDFLAGS) \
 			-o $(DIST_DIR)/$(BINARY)-$(GOOS)-$(GOARCH)$(EXT) . ; \
 	)
+	@scripts/codesign-darwin.sh $(DIST_DIR)/$(BINARY)-darwin-amd64 "$(CODESIGN_IDENTITY)"
+	@scripts/codesign-darwin.sh $(DIST_DIR)/$(BINARY)-darwin-arm64 "$(CODESIGN_IDENTITY)"
 	@echo "Cross-compiled binaries in $(DIST_DIR)/"
+
+## package: Build all platforms, zip with versioned naming + README, notarize darwin → dist/
+package: build-all
+	@cd $(DIST_DIR) && for f in $(BINARY)-*; do \
+		case "$$f" in *.zip) continue ;; esac; \
+		suffix=$${f#$(BINARY)-}; \
+		suffix=$${suffix%%.exe}; \
+		cp ../README.md .; \
+		zip -j "$(BINARY)-$(VERSION)-$${suffix}.zip" "$$f" README.md; \
+		rm -f README.md; \
+	done
+	@scripts/notarize-darwin.sh $(DIST_DIR)/$(BINARY)-$(VERSION)-darwin-amd64.zip "$(NOTARY_PROFILE)"
+	@scripts/notarize-darwin.sh $(DIST_DIR)/$(BINARY)-$(VERSION)-darwin-arm64.zip "$(NOTARY_PROFILE)"
 
 ## clean: remove build artifacts
 clean:
