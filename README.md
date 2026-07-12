@@ -88,7 +88,7 @@ Flags:
 
 ```sh
 make build        # current platform → dist/lite-switch
-make build-all    # all 5 platforms  → dist/
+make build-all    # all 4 platforms (darwin arm64 only)  → dist/
 make check        # vet + lint + test + build + govulncheck
 ```
 

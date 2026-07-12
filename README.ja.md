@@ -87,7 +87,7 @@ echo "今何時ですか？" | lite-switch -switches my-switches.yaml
 
 ```sh
 make build        # 現在のプラットフォーム → dist/lite-switch
-make build-all    # 全5プラットフォーム  → dist/
+make build-all    # 全4プラットフォーム（darwin は arm64 のみ）  → dist/
 make check        # vet + lint + test + build + govulncheck
 ```
 
