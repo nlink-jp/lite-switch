@@ -1,8 +1,20 @@
 #!/bin/bash
 
-SW="/Users/magi/works/lite-switch/dist/lite-switch"
-CFG="/Users/magi/works/lite-switch/test-config.toml"
-SWF="/Users/magi/works/lite-switch/test-switches.yaml"
+# Everything is resolved from this script's own directory: the binary comes from
+# `make build`, and the two fixtures are gitignored on purpose (see .gitignore),
+# so each machine supplies its own.
+ROOT="$(cd "$(dirname "$0")" && pwd)"
+SW="${SW:-$ROOT/dist/lite-switch}"
+CFG="${CFG:-$ROOT/test-config.toml}"
+SWF="${SWF:-$ROOT/test-switches.yaml}"
+
+for f in "$SW" "$CFG" "$SWF"; do
+  if [ ! -e "$f" ]; then
+    echo "missing: $f" >&2
+    echo "run 'make build' and create the test fixtures first (see docs/verification.md)" >&2
+    exit 1
+  fi
+done
 
 run_test() {
   local label="$1"
