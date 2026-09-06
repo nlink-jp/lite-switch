@@ -16,6 +16,7 @@ make build    # dist/lite-switch
 make check    # vet → lint → test → build → govulncheck
 make verify-release  # gate: .notarized marker + freshness (run before upload)
 go test ./... # tests only
+make test-linux # same suite on Linux (container)
 ```
 
 ## Key structure
