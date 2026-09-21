@@ -93,6 +93,6 @@ make check        # vet + lint + test + build + govulncheck
 
 ## ドキュメント
 
-- [セットアップガイド](docs/ja/setup.md)
-- [設計概要](docs/ja/design/overview.md)
+- [セットアップガイド](docs/ja/setup.ja.md)
+- [設計概要](docs/ja/design/overview.ja.md)
 - [English README](README.md)

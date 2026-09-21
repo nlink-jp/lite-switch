@@ -24,15 +24,20 @@ lite-switch/
 │       ├── classifier.go        # Classify(), tool building, tag extraction
 │       └── classifier_test.go
 ├── docs/
-│   ├── design/
-│   │   └── overview.md
-│   ├── ja/                      # Japanese translations
+│   ├── en/                      # English documents (canonical, no language suffix)
 │   │   ├── design/
 │   │   │   └── overview.md
-│   │   └── setup.md
-│   ├── dependencies.md
-│   ├── setup.md
-│   └── structure.md
+│   │   ├── dependencies.md
+│   │   ├── setup.md
+│   │   ├── structure.md
+│   │   └── verification.md
+│   └── ja/                      # Japanese translations (`.ja.md` suffix)
+│       ├── design/
+│       │   └── overview.ja.md
+│       ├── dependencies.ja.md
+│       ├── setup.ja.md
+│       ├── structure.ja.md
+│       └── verification.ja.md
 └── scripts/
     └── hooks/
         ├── pre-commit           # vet + lint

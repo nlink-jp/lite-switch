@@ -11,7 +11,7 @@ SWF="${SWF:-$ROOT/test-switches.yaml}"
 for f in "$SW" "$CFG" "$SWF"; do
   if [ ! -e "$f" ]; then
     echo "missing: $f" >&2
-    echo "run 'make build' and create the test fixtures first (see docs/verification.md)" >&2
+    echo "run 'make build' and create the test fixtures first (see docs/en/verification.md)" >&2
     exit 1
   fi
 done

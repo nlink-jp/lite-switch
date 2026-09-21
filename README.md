@@ -94,6 +94,6 @@ make check        # vet + lint + test + build + govulncheck
 
 ## Documentation
 
-- [Setup guide](docs/setup.md)
-- [Design overview](docs/design/overview.md)
+- [Setup guide](docs/en/setup.md)
+- [Design overview](docs/en/design/overview.md)
 - [日本語 README](README.ja.md)
