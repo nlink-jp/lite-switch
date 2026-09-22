@@ -14,7 +14,7 @@ Part of [lite-series](https://github.com/nlink-jp/lite-series).
 ```sh
 make build    # dist/lite-switch
 make check    # vet → lint → test → build → govulncheck
-make verify-release  # gate: .notarized marker + freshness (run before upload)
+make verify-release  # gate: notarized, fresh, runs at this version, clean linux archives (run before upload)
 go test ./... # tests only
 make test-linux # same suite on Linux (container)
 ```
